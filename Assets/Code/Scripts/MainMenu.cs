@@ -7,8 +7,8 @@ public class MainMenu : MonoBehaviour
 {
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Return))
-            SceneManager.LoadScene("Game");
+        if (Input.GetKeyDown(KeyCode.Return))
+            ChangeScene();
     }
 
     public void ChangeScene()
