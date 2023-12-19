@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    //Referencia al rigidbody de la nave enemiga
+    public Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {
-        
+        //La nave se mueve
+        rb.velocity = Vector2.down; //Vector2.down == new Vector2(0f, -1f)
+
+        Destroy(gameObject, 10f);
     }
 
     // Update is called once per frame
@@ -28,4 +33,5 @@ public class EnemyController : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    
 }
