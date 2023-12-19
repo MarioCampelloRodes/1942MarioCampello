@@ -24,11 +24,13 @@ public class EnemySpawner : MonoBehaviour
         //Si el contador de spawn no está vacío
         if(spawnCounter > 0)
         {
+            //Le restamos 1 al contador cada segundo
             spawnCounter -= Time.deltaTime;
         }
         else
         {
             SpawnEnemy();
+            //Reiniciamos el contador para que empiece de nuevo
             spawnCounter = spawnTime;
         }
     }

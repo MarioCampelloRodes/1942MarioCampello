@@ -6,11 +6,13 @@ public class EnemyController : MonoBehaviour
 {
     //Referencia al rigidbody de la nave enemiga
     public Rigidbody2D rb;
+
+    public float enemySpeed = 5f;
     // Start is called before the first frame update
     void Start()
     {
         //La nave se mueve
-        rb.velocity = Vector2.down; //Vector2.down == new Vector2(0f, -1f)
+        rb.velocity = Vector2.down * enemySpeed; //Vector2.down == new Vector2(0f, -1f)
 
         Destroy(gameObject, 10f);
     }
