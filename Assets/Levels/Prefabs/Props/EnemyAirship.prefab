@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 9137163593716805561}
-  enemySpeed: 4
+  enemyBullet: {fileID: 5663610861106515410, guid: c8fc3e361c5afa34698d9c10c37ab840, type: 3}
 --- !u!61 &3933157165340831245
 BoxCollider2D:
   m_ObjectHideFlags: 0

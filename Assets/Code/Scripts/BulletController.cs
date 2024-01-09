@@ -12,7 +12,15 @@ public class BulletController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        bulletRB.velocity = new Vector2(0f, bulletSpeed);
+        if (gameObject.CompareTag("Bullet"))
+        {
+            bulletRB.velocity = new Vector2(0f, bulletSpeed);
+        }
+        if (gameObject.CompareTag("EnemyBullet"))
+        {
+            bulletRB.velocity = new Vector2(0f, -0.5f * bulletSpeed);
+        }
+        
 
         //Destruiría el objeto al que está asociado este código en 2 segundos
         //Destroy(gameObject, 2f); es una manera de hacerlo
@@ -29,5 +37,16 @@ public class BulletController : MonoBehaviour
     private void OnBecameInvisible()
     {
         Destroy(gameObject);
+    }
+
+    //Método para saber cuando la bala se choca contra algo
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //Si el objeto contra el que colisionamos es una bala o una bala enemiga
+        if(collision.gameObject.CompareTag("Bullet") || collision.gameObject.CompareTag("EnemyBullet"))
+        {
+            Destroy(collision.gameObject);
+            Destroy(gameObject);
+        }
     }
 }
