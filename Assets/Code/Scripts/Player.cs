@@ -27,6 +27,9 @@ public class Player : MonoBehaviour
     //Referencia a la UI
     public UIController uiRef;
 
+    //Referencia al Game Manager
+    public GameManager gM;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,13 +53,17 @@ public class Player : MonoBehaviour
             //Le pasamos el objeto que queremos que aparezca, en la posición y rotación deseadas
             Instantiate(bullet, firePoint.transform.position, firePoint.transform.rotation);
         }
+
+        //Reiniciamos la partida al perder las 3 vidas
+        if (lifes <= 0)
+            gM.ResetGame();
     }
 
     //Método para saber cuando un objeto se ha metido en el trigger del jugador
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Si se ha metido un enemigo
-        if (collision.CompareTag("Enemy"))
+        //Si se ha metido un enemigo o una bala enemiga
+        if (collision.CompareTag("Enemy") || collision.CompareTag("EnemyBullet"))
         {
             //Le restamos una vida al jugador
             lifes--;
@@ -64,6 +71,8 @@ public class Player : MonoBehaviour
             uiRef.UpdateLifes(lifes);
             //Destruimos la nave enemiga
             Destroy(collision.gameObject);
+
+            gM.AnotherLife();
         }
     }
 }

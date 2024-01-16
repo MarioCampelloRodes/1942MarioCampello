@@ -7,12 +7,19 @@ public class EnemyController : MonoBehaviour
     //Referencia al rigidbody de la nave enemiga
     public Rigidbody2D rb;
 
-    public float enemySpeed = 5f;
+    //Referencia a las balas enemigas
+    public GameObject enemyBullet;
+
     // Start is called before the first frame update
     void Start()
     {
-        //La nave se mueve
-        rb.velocity = Vector2.down * enemySpeed; //Vector2.down == new Vector2(0f, -1f)
+        //La nave se mueve hacia abajo, cogemos un número aleatorio para la velocidad
+        float speed = Random.Range(1.5f, 3.0f);
+
+        rb.velocity = new Vector2(0f, -speed);
+
+        //Disparamos balas
+        InvokeRepeating("Shoot", 0.5f, 1f); //Invoke Repeating(nombre del método, tiempo hasta la primera vez, cada cuanto se repite)
 
         Destroy(gameObject, 10f);
     }
@@ -34,6 +41,11 @@ public class EnemyController : MonoBehaviour
             //Destruimos la nave
             Destroy(gameObject);
         }
+    }
+
+    public void Shoot()
+    {
+        Instantiate(enemyBullet, new Vector2(transform.position.x,transform.position.y -0.1f), enemyBullet.transform.rotation);
     }
     
 }

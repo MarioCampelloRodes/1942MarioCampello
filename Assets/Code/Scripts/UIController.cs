@@ -32,21 +32,15 @@ public class UIController : MonoBehaviour
                 break;
 
             case 2:
-                life1.gameObject.SetActive(true);
-                life2.gameObject.SetActive(true);
                 life3.gameObject.SetActive(false);
                 break;
 
             case 1:
-                life1.gameObject.SetActive(true);
                 life2.gameObject.SetActive(false);
-                life3.gameObject.SetActive(false);
                 break;
 
             case 0:
                 life1.gameObject.SetActive(false);
-                life2.gameObject.SetActive(false);
-                life3.gameObject.SetActive(false);
                 break;
 
             default:
